@@ -377,7 +377,7 @@ results are returned in date order with newest first.<br/>
 		<li>active: integer, Whether this talk is in use 
 		<li>owner_id: empty, not used
 		<li>event_voting: integer, Whether voting is active for thi event (currently not in use)
-		<li>private: integer, If this session is only visible to members
+		<li>private: string, If this session is only visible to members (either y, N or zero)
 		<li>lang_abbr: string, Short code for the session language
 		<li>ccount: integer, Number of comments on this session
 		<li>last_comment_date: unix timestamp, Date of the last comment added to this session
