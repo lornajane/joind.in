@@ -1,6 +1,4 @@
 <?php
-	require_once 'PHPUnit/Framework.php';
-	 
 	class ApiTestBase extends PHPUnit_Framework_TestCase {
 		
 		public function testTest() {
@@ -9,7 +7,7 @@
 
 		protected function makeApiRequest( $type, $action, $params, $format=null, $creds=null, $useCache=true ) {
 			// TODO pull this from config
-			$url = "http://lorna.rivendell.local/api/".urlencode($type);
+			$url = "http://joindin.local/api/".urlencode($type);
 
 			$useCache = false;
 
@@ -157,9 +155,14 @@
 					$this->assertLooksLikeAStringOrNull($talk->event_tz_place);
 					$this->assertTrue(is_numeric((string)$talk->event_start));
 					$this->assertTrue(is_numeric((string)$talk->event_end));
+
+                    // this response type varies nastily between different API calls :(
 					$this->assertType(PHPUnit_Framework_Constraint_IsType::TYPE_STRING, $talk->lang);
+
 					$this->assertTrue((isset($talk->comment_count) && is_numeric((string)$talk->comment_count)) 
 							|| (isset($talk->ccount) && is_numeric((string)$talk->ccount)));
+                    $this->assertTrue(($talk->now_next == "now" || $talk->now_next == "next" || empty($talk->now_next)),
+                            "now_next should be 'now', 'next' or an empty string (" . $talk->ID . ')');
 					$this->assertIsASessionType($talk->tcid, "Expected valid category for " . $talk->talk_title . " (" . $talk->ID . ")");
 					if(!empty($talk->tracks)) {
 						foreach($talk->tracks as $track) {
