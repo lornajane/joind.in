@@ -90,7 +90,7 @@ class Talks_model extends Model {
 		$this->load->helper("events");
 		$this->load->helper("talk");
 		if($tid){
-			if (!ctype_digit($tid))
+			if (!ctype_digit((string)$tid))
 			{
 				show_error('Invalid talk identifier was provided, expected a number');
  			}
