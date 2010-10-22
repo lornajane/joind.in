@@ -92,7 +92,7 @@ class Talks_model extends Model {
 		if($tid){
 			if (!ctype_digit((string)$tid))
 			{
-				show_error('Invalid talk identifier was provided, expected a number');
+				return false;
  			}
             
 			// See if we have any comments to exclude
