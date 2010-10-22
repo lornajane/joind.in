@@ -109,7 +109,7 @@ function talk_listDecorateNowNext($talks) {
 	// check the event dates - any talk element will do for this
 	// if the event is not in progress, nothing is either now or next
 	if($talks[0]->event_start > $now || $talks[0]->event_end <= $now) {
-		return;
+		return $talks;
 	}
 
 	// firstly sort the talks into time slots

@@ -199,7 +199,7 @@ class Event_model extends Model {
 		$res = $q->result();
 
 		// Loop through the talks deciding if they are currently on
-		if (is_array($res) && count($res) > 0 && is_object($res[0]) && event_isNowOn($res[0]->event_start, $res[0]->event_end)) {
+		if (is_array($res) && count($res) > 0 && is_object($res[0])) {
 			$res = talk_listDecorateNowNext($res);
 		}
 		

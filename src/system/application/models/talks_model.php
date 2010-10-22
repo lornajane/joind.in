@@ -185,6 +185,7 @@ class Talks_model extends Model {
 			$q=$this->db->query($sql);
 		}
 		$res = $q->result();
+		$res = talk_listDecorateNowNext($res);
 		
 		$CI=&get_instance();
 		$CI->load->model('talk_speaker_model','tsm');
