@@ -10,6 +10,16 @@
 
 			$this->assertExpectedTalkFields($talks);
 
+		}
+		
+		public function testGetDetailXML() {
+			$talks_response = self::makeApiRequest('talk', 'getdetail', array('talk_id'=>2337), 'xml');
+			$talks = $this->decode_response($talks_response, 'xml');
+
+			$this->assertExpectedTalkFields($talks);
+		}
+
+		public function assertExpectedTalkDetailFields($talks) {
             // some additional fields are in this response
             foreach($talks as $talk) {
                 $this->assertTrue(is_numeric((string)$talk->tid), 'tid must be numeric (' . $talk->ID .')');
@@ -26,17 +36,10 @@
                         $talk->private == 0 ||
                         $talk->private == 'N',
                         'private expected to be y or N or zero (' . $talk->ID .')');
-                $this->assertTrue(is_numeric((string)$talk->last_comment_date), 'last_comment_date must be numeric (' . $talk->ID .')');
+                $this->assertTrue((empty($talk->last_comment_date) || is_numeric((string)$talk->last_comment_date)), 'last_comment_date must be numeric (' . $talk->ID .')');
                 $this->assertTrue(is_numeric((string)$talk->allow_comments), 'allow_comments must be numeric (' . $talk->ID .')');
             }
 
-		}
-		
-		public function testGetDetailXML() {
-			$talks_response = self::makeApiRequest('talk', 'getdetail', array('talk_id'=>2337), 'xml');
-			$talks = $this->decode_response($talks_response, 'xml');
-
-			$this->assertExpectedTalkFields($talks);
 		}
 		
 	}
