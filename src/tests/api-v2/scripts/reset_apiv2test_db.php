@@ -12,7 +12,7 @@
  */
 
 // Register the api-v2 autoloader
-require __DIR__ . '/bootstrap/bootstrap.php';
+require __DIR__ . '/../bootstrap/bootstrap.php';
 
 resetDatabase();
 
@@ -27,12 +27,12 @@ resetDatabase();
 function resetDatabase()
 {
     global $db;
-    include_once BASEPATH . '/database.php';
+    require_once BASEPATH . '/database.php';
 
     echo "Setting up database\n";
 
     $cmd = __DIR__ . '/reset_db.sh';
-    $dbDir = realpath(__DIR__ . '/../../../doc/db');
+    $dbDir = realpath(__DIR__ . '/../../../../doc/db');
     $dbName = $db[TEST_DB_KEY]['database'];
     $dbUser = $db[TEST_DB_KEY]['username'];
     $dbPassword = $db[TEST_DB_KEY]['password'];
