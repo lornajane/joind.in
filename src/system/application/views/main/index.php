@@ -8,7 +8,10 @@ if(!user_is_auth()) {
 ?>
 <div class="box">
 <p>Welcome to joind.in!  This is the site where event attendees can leave feedback on an event and its sessions.  Do you have an opinion?  Then <a href="/user/register">register an account</a> and share it!</p>
+
+<p>Joind.in is nominated for a <a href="http://phparch.com/impact-awards/">PHP Architect Impact Award</a> - we'd be delighted if you would <a href="http://phparch.com/impact-awards/vote/">vote for us</a> <b>before 31st March</b></p>
 </div>
+
 <?php
 }
 ?>
