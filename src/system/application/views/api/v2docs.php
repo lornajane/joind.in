@@ -4,7 +4,7 @@
 
 <h2>Overview</h2>
 
-<p>Joind.in is offering a HTTP web service to give clean, robust access to the data contained in the application to consuming devices.  It follows a RESTful style, is available in HTML and JSON formats, and uses OAuth v1.0a for authentication where this is needed (all data publicly visible on the site is available via the API without authentication).  Hyperlinks are provided the responses to allow you to easily locate related data.
+<p>Joind.in is offering a HTTP web service to give clean, robust access to the data contained in the application to consuming devices.  It follows a RESTful style, is available in HTML and JSON formats, and uses OAuth2 for authentication where this is needed (all data publicly visible on the site is available via the API without authentication).  Hyperlinks are provided the responses to allow you to easily locate related data.
 
 This document gives information about the functionality of the API and how to use it.</p>
 
@@ -21,9 +21,9 @@ This document gives information about the functionality of the API and how to us
 
 <h2>Data Formats</h2>
 
-<p>The service currenty supports <b>JSON</b> and <b>HTML</b> only, although these can very easily be expanded upon in future.  The service will guess from your accept header which format you wanted.  In the event that this is not behaving as expected, simply add the <b>format</b> parameter to specify which format should be returned.</p>
+<p>The service currently supports <b>JSON</b> and <b>HTML</b> only, although these can very easily be expanded upon in future.  The service will guess from your <kbd>Accept</kbd> header which format you wanted.  In the event that this is not behaving as expected, simply add the <b>format</b> parameter to specify which format should be returned.</p>
 
-<p>If you want to use the data provided by this API from JavaScript, we offer support for <b>JSONP</b>.  To use this, request json format data and pass an additional <b>callback</b> parameter; the results will be the usual JSON but surrounded with the function you named.</p>
+<p>If you want to use the data provided by this API from JavaScript, we offer support for <b>JSONP</b>.  To use this, request JSON format data and pass an additional <b>callback</b> parameter; the results will be the usual JSON but surrounded with the function you named.</p>
 
 <p>Where there are links to other resources, and for pagination, you will find those links as part of the response.  The pagination links look something like this:
 <blockquote>
@@ -183,5 +183,5 @@ Each result looks something like this:</p>
 <li><strong>user_uri:</strong> <a href="https://api.joind.in/v2/users/14421">https://api.joind.in/v2/users/14421</a></li>
 
 </ul>
-</blockquote> 
+</blockquote>
 
