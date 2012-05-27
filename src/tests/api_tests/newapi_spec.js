@@ -42,10 +42,13 @@ frisby.create('Initial discovery')
           expect(ev.meta).toContainJsonTypes({"count":Number});
           expect(ev).toContainJsonTypes({"events":Array});
 
+          var EventList = new Array();
           for(var i in ev.events) {
             checkEvent(ev.events[i]);
+            expect(EventList.indexOf(ev.events[i].uri)).toBe(-1, "this event already exists in the result set " + ev.events[i].uri);
+            EventList.push(ev.events[i].uri);
   		
-          // Check for more detail in the events
+            // Check for more detail in the events
             frisby.create('Event detail for ' + ev.events[i].name)
               .get(ev.events[i].verbose_uri)
               .expectStatus(200)
@@ -69,16 +72,20 @@ frisby.create('Initial discovery')
                     }
 					      }).toss();
 
+                var countTalkResults = 3;
                 frisby.create('Talks at ' + evt.name)
-                  .get(evt.talks_uri + '?resultsperpage=3')
+                  .get(evt.talks_uri + '?resultsperpage=' + countTalkResults)
                   .expectStatus(200)
                   .expectHeader("content-type", "application/json; charset=utf8")
                   .afterJSON(function(evTalks) {
                     if(typeof evTalks.talks == 'object') {
+                      var TalkCount = 0;
                       for(var i in evTalks.talks) {
                         var talk = evTalks.talks[i];
                         checkTalk(talk);
+                        TalkCount++;
                       }
+                      expect(TalkCount <= countTalkResults).toBe(true, "results count should be less than or equal to resultsperpage");
                     }
 					      }).toss();
 
