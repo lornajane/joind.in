@@ -94,14 +94,16 @@ JI_event = function (){
 	var _loadTalkComments = function(){
 		var el = $('#talk-comments');
  		var eid = $('#eid').val();
-		talkCommentsPage++;
+        if(eid) {
+            talkCommentsPage++;
 
-		$('#more-talk-comments').remove();
+            $('#more-talk-comments').remove();
 
- 		el.append(
-			$('<div>Loading...</div>')
-				.load('/event/talk_comments/' + eid + '/' + talkCommentsPage)
-		);
+            el.append(
+                $('<div>Loading...</div>')
+                    .load('/event/talk_comments/' + eid + '/' + talkCommentsPage)
+            );
+        }
 	}
 	
 	return {
